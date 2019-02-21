@@ -1,0 +1,51 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.0",
+  "license": "<%= license %>",
+  "main": "dist/source",
+  <% if (cli) { %>
+  "bin": "dist/bin/cli.js",
+  <% } %>
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run compile -- --sourceMap",
+    "test": "npm run lint && nyc ava dist/test",
+    "lint": "tslint --format stylish --project .",
+    "build": "npm run compile",
+    "compile": "npm run clean && tsc",
+    "clean": "del dist",
+    "docs": "typedoc source"
+  },
+  "files": [
+    <% if (cli) { %>
+    "dist/bin",
+    <% } %>
+    "dist/source"
+  ],
+  "devDependencies": {
+    "@sindresorhus/is": "^0.15.0",
+    "@sindresorhus/tsconfig": "^0.2.0",
+    "@types/node": "^10.12.21",
+    "ava": "^1.0.1",
+    "codecov": "^3.1.0",
+    "del-cli": "^1.1.0",
+    "nyc": "^13.1.0",
+    "tslint": "^5.12.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.3.1"
+  },
+  "types": "dist",
+  "ava": {
+    "babel": false,
+    "compileEnhancements": false
+  },
+  "nyc": {
+    "exclude": [
+      "dist/test"
+    ]
+  }
+}
