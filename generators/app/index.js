@@ -2,6 +2,7 @@
 
 const fs = require('fs-extra')
 const Generator = require('yeoman-generator')
+const kebabCase = require('lodash.kebabcase')
 
 module.exports = class extends Generator {
   async prompting () {
@@ -10,7 +11,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'name',
         message: 'project name',
-        default: this.appname
+        default: kebabCase(this.appname)
       },
       {
         type: 'input',
