@@ -1,18 +1,15 @@
 {
   "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "rootDir": ".",
     "outDir": "dist",
     "target": "es2017",
-    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "lib": [
       "es2017"
     ]
   },
   "include": [
-    "bin",
-    "source",
-    "test"
+    "source"
   ],
   "typedocOptions": {
     "out": "docs",

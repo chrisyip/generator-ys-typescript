@@ -2,7 +2,7 @@
   "name": "<%= name %>",
   "version": "0.0.0",
   "license": "<%= license %>",
-  "main": "dist/source",
+  "main": "dist/index",
   <% if (cli) { %>
   "bin": "dist/bin/cli.js",
   <% } %>
@@ -14,7 +14,7 @@
     "pretest": "npm run compile -- --sourceMap",
     "test": "npm run lint && nyc ava dist/test",
     "lint": "tslint --format stylish --project .",
-    "build": "npm run clean && webpack",
+    "build": "npm run compile && webpack",
     "compile": "npm run clean && tsc",
     "clean": "del dist",
     "docs": "typedoc source"
@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "@sindresorhus/is": "^0.15.0",
-    "@sindresorhus/tsconfig": "^0.2.0",
+    "@sindresorhus/tsconfig": "^0.4.0",
     "@types/node": "^10.12.21",
     "add-module-exports-webpack-plugin": "^0.1.0",
     "ava": "^1.0.1",
@@ -36,18 +36,25 @@
     "del-cli": "^1.1.0",
     "license-webpack-plugin": "^2.1.0",
     "nyc": "^13.1.0",
+    "ts-node": "^8.3.0",
     "tslint": "^5.12.0",
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.14.2",
-    "typescript": "^3.3.1",
+    "typescript": "~3.5.2",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.1.2"
   },
-  "types": "dist",
+  "types": "dist/index",
   "sideEffects": false,
   "ava": {
     "babel": false,
-    "compileEnhancements": false
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   },
   "nyc": {
     "exclude": [

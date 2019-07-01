@@ -2,7 +2,7 @@
   "name": "<%= name %>",
   "version": "0.0.0",
   "license": "<%= license %>",
-  "main": "dist/source",
+  "main": "dist/index",
   <% if (cli) { %>
   "bin": "dist/bin/cli.js",
   <% } %>
@@ -27,21 +27,28 @@
   ],
   "devDependencies": {
     "@sindresorhus/is": "^0.15.0",
-    "@sindresorhus/tsconfig": "^0.2.0",
+    "@sindresorhus/tsconfig": "^0.4.0",
     "@types/node": "^10.12.21",
     "ava": "^1.0.1",
     "codecov": "^3.1.0",
     "del-cli": "^1.1.0",
     "nyc": "^13.1.0",
+    "ts-node": "^8.3.0",
     "tslint": "^5.12.0",
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.14.2",
-    "typescript": "^3.3.1"
+    "typescript": "~3.5.2"
   },
-  "types": "dist",
+  "types": "dist/index",
   "ava": {
     "babel": false,
-    "compileEnhancements": false
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   },
   "nyc": {
     "exclude": [
